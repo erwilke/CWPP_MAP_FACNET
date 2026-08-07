@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <style>
         html, body, #map {
@@ -36,12 +38,13 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
         <script src="data/cwpp_area_polygons_1.js"></script>
-        <script src="data/Joinedlayer_2.js"></script>
+        <script src="data/cwpp_area_centroids_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[38.44461723009062,-107.08884068143112],[40.406592309296336,-103.43617596607035]]);
+        }).fitBounds([[37.849969227689385,-104.70540428891455],[38.83095676729225,-102.87907193123415]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -194,40 +197,22 @@
         });
         bounds_group.addLayer(layer_cwpp_area_polygons_1);
         map.addLayer(layer_cwpp_area_polygons_1);
-        function pop_Joinedlayer_2(feature, layer) {
+        function pop_cwpp_area_centroids_2(feature, layer) {
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(String(feature.properties['Shape_Leng']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(String(feature.properties['Shape_Area']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Clean_Name'] !== null ? autolinker.link(String(feature.properties['Clean_Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Link_1'] !== null ? autolinker.link(String(feature.properties['Link_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Link_2'] !== null ? autolinker.link(String(feature.properties['Link_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Link_3'] !== null ? autolinker.link(String(feature.properties['Link_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Column 5'] !== null ? autolinker.link(String(feature.properties['Column 5']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Column 6'] !== null ? autolinker.link(String(feature.properties['Column 6']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <td colspan="2">' + (feature.properties['popup_link'] !== null ? autolinker.link(String(feature.properties['popup_link']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CWPP file urls - Sheet1-4_Link_1'] !== null ? autolinker.link(String(feature.properties['CWPP file urls - Sheet1-4_Link_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CWPP file urls - Sheet1-4_Link_2'] !== null ? autolinker.link(String(feature.properties['CWPP file urls - Sheet1-4_Link_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CWPP file urls - Sheet1-4_Link_3'] !== null ? autolinker.link(String(feature.properties['CWPP file urls - Sheet1-4_Link_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -237,9 +222,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Joinedlayer_2_0() {
+        function style_cwpp_area_centroids_2_0() {
             return {
-                pane: 'pane_Joinedlayer_2',
+                pane: 'pane_cwpp_area_centroids_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -249,30 +234,34 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(164,113,88,1.0)',
+                fillColor: 'rgba(255,158,23,1.0)',
                 interactive: true,
             }
         }
-        map.createPane('pane_Joinedlayer_2');
-        map.getPane('pane_Joinedlayer_2').style.zIndex = 402;
-        map.getPane('pane_Joinedlayer_2').style['mix-blend-mode'] = 'normal';
-        var layer_Joinedlayer_2 = new L.geoJson(json_Joinedlayer_2, {
+        map.createPane('pane_cwpp_area_centroids_2');
+        map.getPane('pane_cwpp_area_centroids_2').style.zIndex = 402;
+        map.getPane('pane_cwpp_area_centroids_2').style['mix-blend-mode'] = 'normal';
+        var layer_cwpp_area_centroids_2 = new L.geoJson(json_cwpp_area_centroids_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Joinedlayer_2',
-            layerName: 'layer_Joinedlayer_2',
-            pane: 'pane_Joinedlayer_2',
-            onEachFeature: pop_Joinedlayer_2,
+            dataVar: 'json_cwpp_area_centroids_2',
+            layerName: 'layer_cwpp_area_centroids_2',
+            pane: 'pane_cwpp_area_centroids_2',
+            onEachFeature: pop_cwpp_area_centroids_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Joinedlayer_2_0(feature));
+                return L.circleMarker(latlng, style_cwpp_area_centroids_2_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Joinedlayer_2);
-        map.addLayer(layer_Joinedlayer_2);
+        var cluster_cwpp_area_centroids_2 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_cwpp_area_centroids_2.addLayer(layer_cwpp_area_centroids_2);
+
+        bounds_group.addLayer(layer_cwpp_area_centroids_2);
+        cluster_cwpp_area_centroids_2.addTo(map);
         setBounds();
         </script>        
     </body>
