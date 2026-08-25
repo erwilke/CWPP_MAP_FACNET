@@ -145,7 +145,7 @@
                         <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['popup_link'] !== null ? autolinker.link(String(feature.properties['popup_link']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['popup_link'] !== null ? String(feature.properties['popup_link']) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -203,7 +203,10 @@
         function pop_cwpp_area_centroids_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['popup_link'] !== null ? autolinker.link(String(feature.properties['popup_link']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['popup_link'] !== null ? String(feature.properties['popup_link']) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Title'] !== null ? autolinker.link(String(feature.properties['Title']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
