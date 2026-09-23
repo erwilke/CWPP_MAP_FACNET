@@ -142,9 +142,6 @@
         function pop_cwpp_area_polygons_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <td colspan="2">' + (feature.properties['popup_link'] !== null ? autolinker.link(String(feature.properties['popup_link']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -202,9 +199,6 @@
         map.addLayer(layer_cwpp_area_polygons_1);
         function pop_cwpp_area_centroids_2(feature, layer) {
             var popupContent = '<table>\
-                    <tr>\
-                        <td class="visible-with-data" id="Shape_Area" colspan="2"><strong>Shape_Area</strong><br />' + (feature.properties['Shape_Area'] !== null ? autolinker.link(String(feature.properties['Shape_Area']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['popup_link'] !== null ? autolinker.link(String(feature.properties['popup_link']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
