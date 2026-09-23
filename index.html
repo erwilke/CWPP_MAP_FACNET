@@ -203,16 +203,13 @@
         function pop_cwpp_area_centroids_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
+                        <td class="visible-with-data" id="Shape_Area" colspan="2"><strong>Shape_Area</strong><br />' + (feature.properties['Shape_Area'] !== null ? autolinker.link(String(feature.properties['Shape_Area']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <td colspan="2">' + (feature.properties['popup_link'] !== null ? autolinker.link(String(feature.properties['popup_link']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Title'] !== null ? autolinker.link(String(feature.properties['Title']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['CWPP file urls - Sheet1-4_Link_2'] !== null ? autolinker.link(String(feature.properties['CWPP file urls - Sheet1-4_Link_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['CWPP file urls - Sheet1-4_Link_3'] !== null ? autolinker.link(String(feature.properties['CWPP file urls - Sheet1-4_Link_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
